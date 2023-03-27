@@ -44,17 +44,19 @@ if __name__ == "__main__":
     pontos = []
 
 
-    im = '1_re.jpg'
+    im = '2_red.jpg'
 
     # reading the image
     img = cv2.imread(im)
-
+    print(type(img))
     #print(w, ' ', h)
     resized_image = cv2.resize(img, (800, 598))
 
     resized_image = img
     img = resized_image
+    print(type(resized_image))
     #resized_image = img
+
 
     # displaying the image
     cv2.imshow('image', resized_image)
