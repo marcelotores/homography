@@ -4,8 +4,8 @@ from skimage import transform
 import matplotlib.pyplot as plt
 import cv2
 
-
-chess = cv.imread('2_red.jpg')
+im = cv.imread('1_re.jpg')
+im2 = cv.imread('2_red.jpg')
 #cv.imshow('Original', chess)
 # cv.waitKey(0)
 
@@ -16,12 +16,12 @@ chess = cv.imread('2_red.jpg')
 #                 747, 298,]).reshape((4, 2))
 
 ## imagem 1
-# src = np.array([365, 189,
-#                 164, 321,
-#                 609, 572,
-#                 676, 235,]).reshape((4, 2))
+src = np.array([365, 189,
+                164, 321,
+                609, 572,
+                676, 235,]).reshape((4, 2))
 
-src = np.array([208, 313,
+src2 = np.array([208, 313,
                 393, 558,
                 691, 288,
                 454, 222,]).reshape((4, 2))
@@ -36,26 +36,31 @@ src = np.array([208, 313,
 #                 650, 100,]).reshape((4, 2))
 
 ## imagem1
-# dst = np.array([137, 264,
-#                 99, 560,
-#                 613, 570,
-#                 587, 215,]).reshape((4, 2))
+dst = np.array([137, 264,
+                99, 560,
+                613, 570,
+                587, 215,]).reshape((4, 2))
 
-dst = np.array([194, 235,
+dst2 = np.array([194, 235,
                 192, 534,
                 696, 523,
                 729, 209,]).reshape((4, 2))
 
 #using skimage’s transform module where ‘projective’ is our desired parameter
+
 tform = transform.estimate_transform('projective', src, dst)
+tform2 = transform.estimate_transform('projective', src2, dst2)
 
 h, status = cv2.findHomography(src, dst)
+h2, status2 = cv2.findHomography(src2, dst2)
 
-tf_img = transform.warp(chess, tform.inverse)
+tf_img = transform.warp(im, tform.inverse)
+tf_img2 = transform.warp(im2, tform2.inverse)
+
 #tf_img = transform.warp(chess, h)
 
 #tf_img = cv2.warpPerspective(chess, np.array(tform), (chess.shape[1], chess.shape[0]))
-teste = np.array(tform)
+teste = np.array(tform2)
 
 
 #plotting the transformed image
@@ -65,9 +70,15 @@ fig, ax = plt.subplots()
 
 #resized_image = cv2.resize(tf_img, (800, 598))
 
-#cv.imwrite('imagem2.jpg', tf_img)
+#cv.imwrite('imagem2.jpg', tf_img2)
 
-cv.imshow('Distorcida', tf_img)
+cv.imshow('Imagem 1', tf_img)
+cv.imshow('Imagem 2', tf_img2)
+
+#im_v = cv2.vconcat([tf_img, tf_img])
+
+#cv2.imshow('sea_image.jpg', im_v)
+#cv.imshow('Distorcida', tf_img2)
 
 cv.waitKey(0)
 _ = ax.set_title('projective transformation')
