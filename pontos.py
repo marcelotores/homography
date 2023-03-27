@@ -4,7 +4,7 @@
 import cv2
 
 # path
-path = 'homo.png'
+path = '1_re.jpg'
 
 # Reading an image in default mode
 image = cv2.imread(path)
@@ -13,7 +13,7 @@ image = cv2.imread(path)
 window_name = 'Image'
 
 # Center coordinates
-center_coordinates = (141, 131)
+center_coordinates = (164, 319,)
 # pts_src = np.array([[141, 131], [480, 159], [493, 630],[64, 601]])
 # Radius of circle
 radius = 1
@@ -27,6 +27,10 @@ thickness = 2
 # Using cv2.circle() method
 # Draw a circle with blue line borders of thickness of 2 px
 image = cv2.circle(image, center_coordinates, radius, color, thickness)
+
+#resized_image = cv2.resize(image, (800, 598))
+
+#image = resized_image
 
 # Displaying the image
 cv2.imshow(window_name, image)
