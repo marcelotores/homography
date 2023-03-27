@@ -73,7 +73,7 @@ fig, ax = plt.subplots()
 #cv.imwrite('imagem2.jpg', tf_img2)
 
 cv.imshow('Imagem 1', tf_img)
-cv.imshow('Imagem 2', tf_img2)
+#cv.imshow('Imagem 2', tf_img2)
 
 #im_v = cv2.vconcat([tf_img, tf_img])
 
