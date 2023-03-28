@@ -51,7 +51,7 @@ dst2 = np.array([194, 235,
 tform = transform.estimate_transform('projective', src, dst)
 tform2 = transform.estimate_transform('projective', src2, dst2)
 
-h, status = cv2.findHomography(src, dst)
+h, status = cv2.findHomography(src, dst, cv2.RANSAC, 5.0)
 h2, status2 = cv2.findHomography(src2, dst2)
 
 tf_img = transform.warp(im, tform.inverse)
@@ -70,15 +70,21 @@ fig, ax = plt.subplots()
 
 #resized_image = cv2.resize(tf_img, (800, 598))
 
-#cv.imwrite('imagem2.jpg', tf_img2)
+cv.imwrite('imagem.jpg', tf_img)
 
-cv.imshow('Imagem 1', tf_img)
+#cv.imshow('Imagem 1', tf_img)
 cv.imshow('Imagem 2', tf_img2)
+
+
+
+#cv2.imwrite('output.jpg',dst)
+
+#plt.show()
 
 #im_v = cv2.vconcat([tf_img, tf_img])
 
 #cv2.imshow('sea_image.jpg', im_v)
-#cv.imshow('Distorcida', tf_img2)
+cv.imshow('Distorcida2', tf_img)
 
 cv.waitKey(0)
 _ = ax.set_title('projective transformation')
