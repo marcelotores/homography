@@ -72,8 +72,13 @@ fig, ax = plt.subplots()
 
 cv.imwrite('imagem.jpg', tf_img)
 
+<<<<<<< HEAD
 #cv.imshow('Imagem 1', tf_img)
 cv.imshow('Imagem 2', tf_img2)
+=======
+cv.imshow('Imagem 1', tf_img)
+#cv.imshow('Imagem 2', tf_img2)
+>>>>>>> 01ef61c247b4915ff4b2f8a71f35b514b53aea08
 
 
 
