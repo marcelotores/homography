@@ -10,10 +10,10 @@ pts_src = np.array([208, 313,
                 454, 222,]).reshape((4, 2))
 
 ## imagem 2
-pts_dst = np.array([194, 235,
-                192, 534,
-                696, 523,
-                729, 209,]).reshape((4, 2))
+pts_dst = np.array([137, 264,
+                 137, 570,
+                 613, 570,
+                 613, 264,]).reshape((4, 2))
 
 # Calculate Homography
 h, status = cv2.findHomography(pts_src, pts_dst)

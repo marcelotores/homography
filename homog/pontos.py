@@ -4,7 +4,7 @@ import sys
 
 path = sys.argv[1]
 image = cv2.imread(path)
-center_coordinates = (155, 319,)
+center_coordinates = (164, 321,)
 radius = 1
 color = (255, 0, 0)
 
