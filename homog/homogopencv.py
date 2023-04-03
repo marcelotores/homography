@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-im_src = cv2.imread('../imagens/2_red.jpg')
+im_src = cv2.imread('2_red.jpg')
 
 ## imagem 2
 pts_src = np.array([208, 313,

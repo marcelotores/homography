@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-image = cv2.imread('/home/infra/PycharmProjects/homography/imagens/2_red_h.jpg')
+image = cv2.imread('/home/marcelo/projetos/detectores/homography/imagens/2_red_h.jpg')
 
 (B, G, R) = cv2.split(image)
 
@@ -11,7 +11,8 @@ cv2.imshow("Red", cv2.merge([zeros, zeros, R]))
 cv2.imshow("Green", cv2.merge([zeros, G, zeros]))
 
 cv2.imshow("Blue", cv2.merge([B, zeros, zeros]))
-cv2.imwrite('2-verde.jpg', cv2.merge([zeros, G, zeros]))
+cv2.imwrite('2-azul.jpg', cv2.merge([B, zeros, zeros]))
+
 cv2.waitKey(0)
 
 # from PIL import Image
