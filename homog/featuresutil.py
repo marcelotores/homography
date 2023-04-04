@@ -1,17 +1,19 @@
 import cv2 as cv
 
-def pontos(image, x, y, cor):
+
+def pontos(image, x, y, cor='B', tamanho=1):
 
     """ Recebe uma imagem, suas coordenas X, Y e coloca um ponto azul sobre a imagem """
 
     #image = cv.imread(imagem)
+
     center_coordinates = (x, y)
-    radius = 1
-    if cor == 'vermelho':
+    radius = tamanho
+    if cor == 'B':
         color = (255, 0, 0)
-    elif cor == 'verde':
+    elif cor == 'G':
         color = (0, 255, 0)
-    else:
+    elif cor == 'R':
         color = (0, 0, 255)
 
     # Line thickness of 2 px
@@ -26,6 +28,33 @@ def pontos(image, x, y, cor):
 
     return image
 
+
+def linha(image, ponto_a, ponto_b, cor='B', tamanho=1):
+
+    """ Recebe uma imagem, suas coordenas X, Y e coloca um ponto azul sobre a imagem """
+
+    #image = cv.imread(imagem)
+
+    center_coordinates = (x, y)
+    radius = tamanho
+    if cor == 'B':
+        color = (255, 0, 0)
+    elif cor == 'G':
+        color = (0, 255, 0)
+    elif cor == 'R':
+        color = (0, 0, 255)
+
+    # Line thickness of 2 px
+    thickness = 2
+
+    # Draw a circle with blue line borders of thickness of 2 px
+    image = cv.circle(image, center_coordinates, radius, color, thickness)
+
+    #cv.imshow('Imagem', image)
+    #cv.imwrite('imagem_com_ponto.jpg', image)
+    #cv.waitKey(0)
+
+    return image
 def sift_detectores_e_descritores(imagem):
 
     """ Recebe uma imagem (numpy) e retorna uma tupla com os detectores e descritores """

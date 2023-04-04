@@ -2,28 +2,30 @@ import cv2
 import numpy as np
 import featuresutil as ft
 
-im_src = cv2.imread('../imagens/1_red.jpg')
-im_src = ft.pontos(im_src, 365, 189, 'azul')
-im_src = ft.pontos(im_src, 164, 321, 'azul')
-im_src = ft.pontos(im_src, 609, 572, 'azul')
-im_src = ft.pontos(im_src, 676, 235, 'azul')
+im_src = cv2.imread('../imagens/original1.jpg')
+im_src = ft.pontos(im_src, 370, 203, 'B')
+im_src = ft.pontos(im_src, 161, 318, 'B')
+im_src = ft.pontos(im_src, 603, 563, 'B')
+im_src = ft.pontos(im_src, 679, 252, 'B')
+# motor
+im_src = ft.pontos(im_src, 356, 224, 'R')
+im_src = ft.pontos(im_src, 356, 223, 'R')
+im_src = ft.pontos(im_src, 356, 220, 'R')
+im_src = ft.pontos(im_src, 356, 219, 'R')
+im_src = ft.pontos(im_src, 356, 217, 'R')
+im_src = ft.pontos(im_src, 356, 216, 'R')
+im_src = ft.pontos(im_src, 356, 215, 'R')
+im_src = ft.pontos(im_src, 356, 212, 'R')
 
-im_src = ft.pontos(im_src, 137, 264, 'verde')
-im_src = ft.pontos(im_src, 137, 570, 'verde')
-im_src = ft.pontos(im_src, 613, 570, 'verde')
-im_src = ft.pontos(im_src, 613, 264, 'verde')
+
+
+
 
 ## imagem 1
-pts_src = np.array([365, 189,
-                 164, 321,
-                 609, 572,
-                 676, 235,]).reshape((4, 2))
+pts_src = np.array([370, 203, 161, 318, 603, 563, 679, 252]).reshape((4, 2))
 
 ## imagem 1
-pts_dst = np.array([137, 264,
-                 137, 570,
-                 613, 570,
-                 613, 264,]).reshape((4, 2))
+pts_dst = np.array([152, 177, 152, 517, 699, 518, 699, 178]).reshape((4, 2))
 
 # Calculate Homography
 h, status = cv2.findHomography(pts_src, pts_dst)

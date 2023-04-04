@@ -6,7 +6,7 @@ import sys
 
 # Passa imagem e pontos.
 #img1 = sys.argv[1]
-im = cv.imread('/home/infra/PycharmProjects/homography/imagens/2_red.jpg')
+im = cv.imread('/home/infra/PycharmProjects/homography/imagens/original2.jpg')
 
 
 src = np.array([365, 189,

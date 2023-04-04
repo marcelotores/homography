@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import featuresutil as ft
 
-img1 = cv.imread('../imagens/1_red.jpg')
+img1 = cv.imread('../imagens/original1.jpg')
 img2 = cv.imread('../imagens/1_red_h.jpg')
 
 #ft.pontos(img1, 353, 207)
