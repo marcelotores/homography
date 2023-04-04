@@ -2,8 +2,10 @@ import cv2 as cv
 import numpy as np
 import featuresutil as ft
 
-img1 = cv.imread('../imagens/1_red_h.jpg')
-img2 = cv.imread('../imagens/2_red_h.jpg')
+img1 = cv.imread('../imagens/1_red.jpg')
+img2 = cv.imread('../imagens/1_red_h.jpg')
+
+#ft.pontos(img1, 353, 207)
 
 kp1, kp2, good = ft.sift_correspondencias(img1, img2)
 

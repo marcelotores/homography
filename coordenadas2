@@ -10,3 +10,14 @@ pts_dst = np.array([137, 264,
                  613, 570,
                  613, 264,]).reshape((4, 2))
 
+## imagem 2
+pts_src = np.array([208, 313,
+                393, 558,
+                691, 288,
+                454, 222,]).reshape((4, 2))
+
+## imagem 2
+pts_dst = np.array([137, 264,
+                 137, 570,
+                 613, 570,
+                 613, 264,]).reshape((4, 2))

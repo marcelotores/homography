@@ -4,7 +4,7 @@ import sys
 
 path = sys.argv[1]
 image = cv2.imread(path)
-center_coordinates = (164, 321,)
+center_coordinates = (353, 207)
 radius = 1
 color = (255, 0, 0)
 
@@ -15,4 +15,5 @@ thickness = 2
 image = cv2.circle(image, center_coordinates, radius, color, thickness)
 
 cv2.imshow('Imagem', image)
+cv2.imwrite('imagem_com_ponto.jpg', image)
 cv2.waitKey(0)
