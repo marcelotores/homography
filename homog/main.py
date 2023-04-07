@@ -5,15 +5,20 @@ import featuresutil as ft
 img1 = cv.imread('../imagens/original1.jpg')
 img2 = cv.imread('../imagens/1_red_h.jpg')
 
+ponto_1 = [356, 224]
+ponto_2 = [329, 270]
+
+ft.equacao_reta(ponto_2, ponto_1)
+
 #ft.pontos(img1, 353, 207)
 
-kp1, kp2, good = ft.sift_correspondencias(img1, img2)
+#kp1, kp2, good = ft.sift_correspondencias(img1, img2)
 
 
-img3 = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+#img3 = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
 
 # print('Quantidade de Correspondências: ', len(good))
 
 
-cv.imshow('Correspondencias', img3)
-cv.waitKey(0)
+#cv.imshow('Correspondencias', img3)
+#cv.waitKey(0)

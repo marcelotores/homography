@@ -1,4 +1,39 @@
 import cv2 as cv
+from math import sqrt
+
+def distancia_entre_pontos(ponto_1, ponto_2):
+    xA, yA = ponto_1
+    xB, yB = ponto_2
+
+    # Calculando a distância
+    distAB = sqrt((xA - xB) ** 2) + ((yA - yB) ** 2)
+
+    return distAB
+
+def reta(ponto_1, ponto_2, imagem):
+
+    #ponto_1 = [356, 224]
+    #ponto_2 = [329, 270]
+
+    x1, y1 = ponto_1
+    x2, y2 = ponto_2
+
+    # coeficiente angular
+    m = (y2 - y1) / (x2 - x1)
+
+    # escolhe um dos dois pontos e substitui para encontrar o coeficiente linear
+    n = y1 - m * x1
+    # após, foi encontrado a equação da reta
+
+    maior_x = max(x1, x2)
+    menor_x = min(x1, x2)
+
+    while menor_x < maior_x:
+        y = m * menor_x + n
+        imagem = pontos(imagem, menor_x, int(y), 'R')
+        menor_x+=1
+
+    return imagem
 
 
 def pontos(image, x, y, cor='B', tamanho=1):
