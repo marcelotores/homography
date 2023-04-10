@@ -2,23 +2,15 @@ import cv2 as cv
 import numpy as np
 import featuresutil as ft
 
-img1 = cv.imread('../imagens/original1.jpg')
+imagem_original = cv.imread('../imagens/original1.jpg')
+imagem_redimensionada = cv.imread('../imagens/imagem1_redimensionada.jpg')
 img2 = cv.imread('../imagens/1_red_h.jpg')
 
-ponto_1 = [356, 224]
-ponto_2 = [329, 270]
+ponto_retangulo_1, ponto_retangulo_2 = [429, 488], [502, 297]
 
-ft.equacao_reta(ponto_2, ponto_1)
-
-#ft.pontos(img1, 353, 207)
-
-#kp1, kp2, good = ft.sift_correspondencias(img1, img2)
+im_src = ft.retangulo(ponto_retangulo_1, ponto_retangulo_2, imagem_redimensionada, True)
 
 
-#img3 = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-
-# print('Quantidade de Correspondências: ', len(good))
-
-
-#cv.imshow('Correspondencias', img3)
-#cv.waitKey(0)
+cv.imshow('Com retangulo', im_src)
+cv.imshow('Original', imagem_original)
+cv.waitKey(0)

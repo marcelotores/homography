@@ -10,6 +10,31 @@ def distancia_entre_pontos(ponto_1, ponto_2):
 
     return distAB
 
+def retangulo2(ponto_topo_esquerdo, ponto_base_direita, imagem):
+
+    cv.rectangle(imagem, ponto_topo_esquerdo, ponto_base_direita, (0, 255, 0), 5)
+    return imagem
+
+def retangulo(ponto_topo_esquerdo, ponto_base_direita, imagem, invertePontos=False):
+
+    if invertePontos:
+        x_anterior = ponto_topo_esquerdo[0]
+        ponto_topo_esquerdo[0] = ponto_base_direita[0]
+        ponto_base_direita[0] = x_anterior
+
+    cv.rectangle(imagem, ponto_topo_esquerdo, ponto_base_direita, (0, 255, 0), 5)
+    return imagem
+
+def circulo(ponto, raio, imagem):
+    cv.circle(imagem, ponto, raio, (255, 0, 0), 3)
+    return imagem
+
+def reta2(ponto_1, ponto_2, imagem):
+
+    cv.line(imagem, ponto_1, ponto_2, (0, 0, 255), 2)
+
+    return imagem
+
 def reta(ponto_1, ponto_2, imagem):
 
     #ponto_1 = [356, 224]
