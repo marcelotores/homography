@@ -1,10 +1,10 @@
-# importing the required libraries
+    # importing the required libraries
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-imagem1 = '/home/infra/PycharmProjects/homography/imagens/1_red_h.jpg'
-imagem2 = '/home/infra/PycharmProjects/homography/imagens/2_red_h.jpg'
+imagem1 = '../imagens/155850.jpg'
+imagem2 = '../imagens/155853.jpg'
 
 # reading image in grayscale
 img1 = cv.imread(imagem1, cv.IMREAD_GRAYSCALE)
@@ -42,11 +42,14 @@ if len(good) > MIN_MATCH_COUNT:
     print(M)
     print('----------------')
     print(mask)
-    im_out = cv.warpPerspective(img1, M, (img2.shape[1], img2.shape[0]))
+    im_out = cv.warpPerspective(img2, M, (img2.shape[1], img2.shape[0]))
 
     # Display images
-    cv.imshow("Imagem Fonte", cv.resize(img1, (660, 540)))
-    cv.imshow("Imagem Destino", cv.resize(im_out, (660, 540)))
+    #cv.imshow("Imagem Fonte", cv.resize(img1, (660, 540)))
+    #cv.imshow("Imagem Destino", cv.resize(im_out, (660, 540)))
+    cv.imshow("Imagem Fonte", img1)
+    cv.imshow("Imagem Destino", im_out)
+    cv.imwrite('im_deformada.jpg', im_out)
     cv.waitKey(0)
 
 else:

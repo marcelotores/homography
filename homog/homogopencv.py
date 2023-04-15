@@ -51,6 +51,7 @@ pts_dst = np.array([152, 177, 152, 517, 699, 518, 699, 178]).reshape((4, 2))
 h, status = cv2.findHomography(pts_src, pts_dst)
 
 # Warp source image to destination based on homography
+#im_out = cv2.warpPerspective(im_src, h, (im_src.shape[1], im_src.shape[0]))
 im_out = cv2.warpPerspective(im_src, h, (im_src.shape[1], im_src.shape[0]))
 
 final = ft.retangulo(ponto1_retangulo_1, ponto2_retangulo_1, imagem_redimensionada, True)
@@ -60,5 +61,6 @@ cv2.imshow("findHomo", final)
 #cv2.imshow("Nova imagem", nova_imagem)
 
 cv2.imwrite('../imagens/imagem1_redimensionada.jpg', im_out)
+cv2.imwrite('../imagens/imagem1_redimensionada2.jpg', final)
 
 cv2.waitKey(0)
