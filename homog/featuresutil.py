@@ -145,8 +145,11 @@ def orb_detectores_e_descritores(imagem):
 def sift_correspondencias(imagem1, imagem2):
     """ Recebe duas imagens (numpy) e retorna uma tupla (kp1, kp2, correspondencias[]) """
 
-    kp1, des1 = sift_detectores_e_descritores(imagem1)
-    kp2, des2 = sift_detectores_e_descritores(imagem2)
+    img1 = cv.imread(imagem1)
+    img2 = cv.imread(imagem2)
+
+    kp1, des1 = sift_detectores_e_descritores(img1)
+    kp2, des2 = sift_detectores_e_descritores(img2)
 
     bf = cv.BFMatcher()
     correspondencias = bf.knnMatch(des1, des2, k=2)
@@ -157,8 +160,9 @@ def sift_correspondencias(imagem1, imagem2):
         if m.distance < 0.75 * n.distance:
             good.append([m])
 
-    return kp1, kp2, good
-
+    image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+    #return kp1, kp2, good
+    return image_out, good
 
 def orb_correspondencias(imagem1, imagem2):
 
