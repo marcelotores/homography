@@ -1,5 +1,12 @@
 import cv2 as cv
 from math import sqrt
+import types
+
+def res_img(img, tam):
+    altura, largura = img.shape
+    altura *= tam
+    largura *= tam
+    return cv.resize(img, (altura, largura), interpolation = cv.INTER_AREA)
 
 def distancia_entre_pontos(ponto_1, ponto_2):
     xA, yA = ponto_1
@@ -142,7 +149,7 @@ def orb_detectores_e_descritores(imagem):
 
     return kp, des
 
-def sift_correspondencias(imagem1, imagem2):
+def sift_correspondencias(imagem1, imagem2, qtd_match=0):
     """ Recebe duas imagens (numpy) e retorna uma tupla (kp1, kp2, correspondencias[]) """
 
     img1 = cv.imread(imagem1)
@@ -160,7 +167,11 @@ def sift_correspondencias(imagem1, imagem2):
         if m.distance < 0.75 * n.distance:
             good.append([m])
 
-    image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+    if qtd_match != 0:
+        image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good[:qtd_match], None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+    else:
+        image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None,
+                                      flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     #return kp1, kp2, good
     return image_out, good
 
@@ -168,20 +179,27 @@ def orb_correspondencias(imagem1, imagem2):
 
     """ Recebe duas imagens (numpy) e retorna uma tupla (kp1, kp2, correspondencias[]) """
 
+    img1 = cv.imread(imagem1, cv.IMREAD_GRAYSCALE)
+    img2 = cv.imread(imagem2, cv.IMREAD_GRAYSCALE)
+
     # Detectores e descritores
-    kp1, des1 = orb_detectores_e_descritores(imagem1)
-    kp2, des2 = orb_detectores_e_descritores(imagem2)
+    kp1, des1 = orb_detectores_e_descritores(img1)
+    kp2, des2 = orb_detectores_e_descritores(img2)
 
-    # Initiate ORB detector
-    orb = cv.ORB_create()
+    if type(des1) != types.NoneType and type(des2) != types.NoneType:
 
-    # create BFMatcher object
-    bf = cv.BFMatcher(cv.NORM_HAMMING, crossCheck=True)
+        # create BFMatcher object
+        bf = cv.BFMatcher(cv.NORM_HAMMING, crossCheck=True)
 
-    # Match descriptors.
-    matches = bf.match(des1, des2)
+        # Match descriptors.
+        matches = bf.match(des1, des2)
 
-    # Sort them in the order of their distance.
-    matches = sorted(matches, key=lambda x: x.distance)
+        # Sort them in the order of their distance.
+        matches = sorted(matches, key=lambda x: x.distance)
 
-    return kp1, kp2, matches
+        image_out = cv.drawMatches(img1, kp1, img2, kp2, matches, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+
+        return image_out, matches
+    else:
+        print('Não há características o suficientes para serem correspondidas!')
+    #return kp1, kp2, matches
