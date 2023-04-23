@@ -3,8 +3,8 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-imagem1 = '../imagens/mouse1.png'
-imagem2 = '../imagens/mouse2.png'
+imagem1 = '../imagens/motor1.jpg'
+imagem2 = '../imagens/motor2.jpg'
 
 # reading image in grayscale
 img1 = cv.imread(imagem1, cv.IMREAD_GRAYSCALE)
@@ -43,7 +43,7 @@ if len(good) > MIN_MATCH_COUNT:
     print('----------------')
     print(mask)
     #im_out = cv.warpPerspective(img2, M, (img2.shape[1], img2.shape[0]))
-    im_out = cv.warpPerspective(img2, M, (img2.shape[1], img2.shape[0]))
+    im_out = cv.warpPerspective(img2, M, (img1.shape[1], img1.shape[0]))
 
     # Display images
     #cv.imshow("Imagem Fonte", cv.resize(img1, (660, 540)))
@@ -51,7 +51,7 @@ if len(good) > MIN_MATCH_COUNT:
     cv.imshow("Imagem Fonte", img1)
     cv.imshow("Imagem Destino", img2)
     cv.imshow("Imagem Saida", im_out)
-    cv.imwrite('moc_deformado.jpg', im_out)
+    #cv.imwrite('motor_deformado.jpg', im_out)
     cv.waitKey(0)
 
 else:

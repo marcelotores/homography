@@ -2,11 +2,19 @@ import cv2 as cv
 from math import sqrt
 import types
 
-def res_img(img, tam):
-    altura, largura = img.shape
-    altura *= tam
-    largura *= tam
-    return cv.resize(img, (altura, largura), interpolation = cv.INTER_AREA)
+import numpy as np
+
+
+def res_img(img, nova_largura):
+
+    """ Recebe uma imagem, e a nova largura, e devolve a imagem redimensionada proporcionalmente """
+
+    altura, largura, c = img.shape
+    val = altura / largura
+    nova_altura = nova_largura * val
+
+    print(int(nova_altura), nova_largura)
+    return cv.resize(img, (nova_largura, int(nova_altura)), interpolation=cv.INTER_AREA)
 
 def distancia_entre_pontos(ponto_1, ponto_2):
     xA, yA = ponto_1
@@ -168,12 +176,13 @@ def sift_correspondencias(imagem1, imagem2, qtd_match=0):
             good.append([m])
 
     if qtd_match != 0:
-        image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good[:qtd_match], None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+        image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good[:qtd_match], None,
+                                      flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     else:
         image_out = cv.drawMatchesKnn(img1, kp1, img2, kp2, good, None,
                                       flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     #return kp1, kp2, good
-    return image_out, good
+    return image_out, good, kp1, kp2
 
 def orb_correspondencias(imagem1, imagem2):
 
